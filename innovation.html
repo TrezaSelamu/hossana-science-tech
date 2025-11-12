@@ -1,0 +1,120 @@
+<?php
+// --- Connect to Database ---
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "innovation_db";
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// --- Handle Single Innovation Detail ---
+$detail = null;
+if (isset($_GET['id'])) {
+  $id = intval($_GET['id']);
+  $detail = $conn->query("SELECT * FROM innovations WHERE id = $id AND status='approved'")->fetch_assoc();
+}
+
+// --- Fetch All Approved Innovations ---
+$innovations = $conn->query("SELECT id, title, description, category, date, file FROM innovations WHERE status='approved' ORDER BY date DESC");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innovation Hub - Hossana Science and Technology</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* === Keep your existing CSS === */
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background-color: #f8f9fb;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, #00416a, #e4e5e6);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+    section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+    h2 { font-size: 2rem; color: #00416a; text-align: center; margin-bottom: 20px; }
+    p { font-size: 1.05rem; color: #333; max-width: 900px; margin: 0 auto 20px; text-align: center; }
+    .big-btn-container { text-align: center; margin-top: 30px; }
+    .big-btn { background-color: #00416a; color: white; padding: 16px 36px; font-size: 1.1rem; border: none; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; }
+    .big-btn:hover { background-color: #026aa7; transform: scale(1.05); }
+    #featured-innovations { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+    .innovation-card { background: #fff; border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .innovation-card:hover { transform: translateY(-5px); }
+    .innovation-card h4 { margin-bottom: 8px; color: #00416a; }
+    .innovation-card p { color: #555; }
+    .innovation-card a.btn { display: inline-block; background: #00416a; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; transition: 0.3s; }
+    .innovation-card a.btn:hover { background: #026aa7; transform: scale(1.05); }
+    .detail-box { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 900px; margin: 30px auto; }
+    .detail-box h3 { color: #00416a; }
+    .detail-box a.download-btn { background: #00416a; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; transition: 0.3s; }
+    .detail-box a.download-btn:hover { background: #026aa7; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Innovation Hub - Hossana Science & Technology</h1>
+  </header>
+
+  <section id="intro">
+    <h2>Welcome to the Innovation Hub</h2>
+    <p>
+      Innovation is the heartbeat of progress. It transforms ideas into real-world solutions — creating opportunities,
+      improving lives, and shaping the future.
+    </p>
+    <div class="big-btn-container">
+      <button class="big-btn" onclick="window.location.href='submit_innovation.php'">Submit Your Innovation</button>
+    </div>
+  </section>
+
+  <!-- === PUBLIC INNOVATION SECTION === -->
+  <section id="featured-innovations">
+    <h2>Approved Innovations</h2>
+
+    <?php if ($detail): ?>
+      <!-- === DETAIL VIEW === -->
+      <div class="detail-box">
+        <h3><?= htmlspecialchars($detail['title']) ?></h3>
+        <p><strong>Category:</strong> <?= htmlspecialchars($detail['category']) ?></p>
+        <p><strong>Date:</strong> <?= htmlspecialchars($detail['date']) ?></p>
+        <p><?= nl2br(htmlspecialchars($detail['description'])) ?></p>
+        <?php if (!empty($detail['file'])): ?>
+          <p><a href="uploads/<?= htmlspecialchars($detail['file']) ?>" class="download-btn" target="_blank">Download PDF</a></p>
+        <?php endif; ?>
+        <p><a href="innovation.php" class="download-btn">← Back to Innovations</a></p>
+      </div>
+
+    <?php else: ?>
+      <!-- === PUBLIC LIST VIEW === -->
+      <?php if ($innovations->num_rows > 0): ?>
+        <?php while($row = $innovations->fetch_assoc()): ?>
+          <div class="innovation-card">
+            <h4><?= htmlspecialchars($row['title']) ?></h4>
+            <p><?= htmlspecialchars(substr($row['description'], 0, 100)) ?>...</p>
+            <p><strong>Category:</strong> <?= htmlspecialchars($row['category']) ?></p>
+            <p><strong>Date:</strong> <?= htmlspecialchars($row['date']) ?></p>
+            <a class="btn" href="innovation.php?id=<?= $row['id'] ?>">View Details</a>
+          </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <p style="text-align:center;">No approved innovations yet.</p>
+      <?php endif; ?>
+    <?php endif; ?>
+  </section>
+
+  <footer>
+    © 2025 Hossana Science & Technology - Innovation Hub
+  </footer>
+</body>
+</html>

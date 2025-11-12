@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — TechCity</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Tech<span>City</span></div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="toggle nav"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <section class="hero small-hero">
+    <div class="container">
+      <h1>Gallery</h1>
+      <p>Photos from events, projects and demos.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid gallery-grid">
+        <!-- Use your own images here -->
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?technology,city')"></div>
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?robotics')"></div>
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?innovation')"></div>
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?hackathon')"></div>
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?startup')"></div>
+        <div class="gallery-item" style="background-image:url('https://source.unsplash.com/800x600/?solar')"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 TechCity — Gallery</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

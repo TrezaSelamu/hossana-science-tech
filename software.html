@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Software Development — Hossana Science & Technology</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fc;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    header {
+      background: #0A1931;
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container { width: 90%; max-width: 1100px; margin: auto; }
+    h2 { color: #0A1931; margin-top: 40px; }
+    section { padding: 60px 0; border-bottom: 1px solid #ddd; }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+      margin: 5px 5px 0 0;
+    }
+    .btn:hover { background: #FFD700; color: #0A1931; }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .search-bar input {
+      width: 60%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #0A1931;
+      color: #eee;
+    }
+    body.dark-mode header { background: #111a3b; }
+    body.dark-mode .card { background: #16244b; color: white; }
+    body.dark-mode .btn { border-color: #FFD700; color: #FFD700; }
+
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toggle-dark {
+      background: transparent;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+      border-radius: 50%;
+      padding: 8px 10px;
+      cursor: pointer;
+      float: right;
+      margin-left: 10px;
+    }
+
+    .lang-select {
+      float: right;
+      margin-right: 15px;
+      border-radius: 8px;
+      padding: 5px;
+      border: 1px solid #FFD700;
+      background: transparent;
+      color: #FFD700;
+    }
+
+    footer { text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Software Development</h1>
+      <select class="lang-select">
+        <option>EN</option>
+        <option>አማ</option>
+        <option>中文</option>
+      </select>
+      <button class="toggle-dark"><i class="fas fa-moon"></i></button>
+    </div>
+  </header>
+
+  <!-- Search bar -->
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search developers, projects, or events..." />
+    </div>
+  </div>
+
+  <!-- Developer Directory & Job Board -->
+  <section id="developers" class="fade-in">
+    <div class="container">
+      <h2>Local Developer Directory & Job Board</h2>
+      <div class="card">
+        <p>Find talented developers, tech companies, or job openings in your area.</p>
+        <a href="#developers" class="btn">Browse Developers</a>
+        <a href="#developers" class="btn">Post a Job</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Showcase -->
+  <section id="repository" class="fade-in">
+    <div class="container">
+      <h2>Code & Project Showcase</h2>
+      <div class="card">
+        <p>Explore open-source projects and APIs built by local teams and contributors.</p>
+        <a href="#repository" class="btn">View Repository</a>
+        <a href="#repository" class="btn">Upload Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning & Event Calendar -->
+  <section id="events" class="fade-in">
+    <div class="container">
+      <h2>Learning & Event Calendar</h2>
+      <div class="card">
+        <p>Upcoming coding bootcamps, hackathons, and workshops in Hossana.</p>
+        <a href="#events" class="btn">View Calendar</a>
+        <a href="#events" class="btn">Register Event</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coding Challenges -->
+  <section id="challenges" class="fade-in">
+    <div class="container">
+      <h2>Coding Challenges</h2>
+      <div class="card">
+        <p>Participate in monthly challenges to sharpen your coding skills and earn points.</p>
+        <a href="#challenges" class="btn">Join Challenge</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skill Badges -->
+  <section id="badges" class="fade-in">
+    <div class="container">
+      <h2>Skill Badges</h2>
+      <div class="card">
+        <p>Earn verified skill badges by completing projects or winning challenges.</p>
+        <a href="#badges" class="btn">View Badges</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Forum -->
+  <section id="forum" class="fade-in">
+    <div class="container">
+      <h2>Developer Forum</h2>
+      <div class="card">
+        <p>Join discussions, ask for help, and share your knowledge with others.</p>
+        <a href="#forum" class="btn">Open Forum</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot -->
+  <section id="chatbot" class="fade-in">
+    <div class="container">
+      <h2>Tech Support Chatbot 🤖</h2>
+      <div class="card">
+        <p>Need help? Ask our AI-powered chatbot for assistance or documentation links.</p>
+        <a href="#chatbot" class="btn">Start Chat</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fade-in">
+    <div class="container">
+      <p>© 2025 Hossana Science & Technology | Software Development Hub</p>
+    </div>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    document.querySelector('.toggle-dark').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Scroll fade-in animation
+    const faders = document.querySelectorAll('.fade-in');
+    const appear = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    });
+    faders.forEach(fade => appear.observe(fade));
+  </script>
+</body>
+</html>

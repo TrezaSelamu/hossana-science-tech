@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — TechCity</title>
+   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Tech<span>City</span></div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="toggle nav"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <section class="hero small-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Questions, partnerships or service requests — we’re here to help.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <h2 class="section-title">Get in touch</h2>
+          <p>Send us a message and we will reply within 2 business days.</p>
+          <form id="contactForm" class="submit-form">
+            <input type="text" id="c-name" placeholder="Your name" required>
+            <input type="email" id="c-email" placeholder="Your email" required>
+            <input type="text" id="c-subject" placeholder="Subject" required>
+            <textarea id="c-message" rows="5" placeholder="Your message" required></textarea>
+            <button class="btn" type="submit">Send Message</button>
+            <p class="muted small" id="contactMsg"></p>
+          </form>
+        </div>
+        <div>
+          <h3>Visit / Address</h3>
+          <p>123 Innovation Road, Your City</p>
+          <h3>Email</h3>
+          <p>hello@techcity.example</p>
+          <h3>Phone</h3>
+          <p>+251 9XX XXX XXX</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 TechCity — Contact</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('contactMsg').textContent = 'Thanks — message sent. We will contact you soon.';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
